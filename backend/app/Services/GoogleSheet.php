@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use Google_Client;
 use Google_Service_Sheets;
 use Google_Service_Sheets_ValueRange;
@@ -17,7 +16,7 @@ class GoogleSheet
 
     public function __construct()
     {
-        $this->spreadSheetId = config('datastudio.google_sheet_id');
+        $this->spreadSheetId = env(key: 'GOOGLE_SHEET_ID');
 
         $this->client = new Google_Client();
         $this->client->setAuthConfig(storage_path('credentials.json'));
