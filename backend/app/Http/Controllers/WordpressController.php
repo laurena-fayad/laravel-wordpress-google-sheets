@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\GoogleSheet;
 
 use Http;
 use Google_Client;
@@ -95,6 +94,8 @@ class WordpressController extends Controller
             ->update($spreadSheetId, $range, $body, $params);
     }
 
+    //Plugin Info
+
     $plugin_info = Http::get('https://api.wordpress.org/plugins/info/1.0/simply-schedule-appointments.json');
     $json_result = json_decode($plugin_info);
     $installations = $json_result->downloaded;
@@ -110,11 +111,5 @@ class WordpressController extends Controller
 
     saveDataToSheet ($values);
     
-    // return [$five_star_ratings,$other_ratings,$installations,$version, $date];
-
-
-
-
-
-}
-}
+    return [$five_star_ratings,$other_ratings,$installations,$version, $date];
+}}
